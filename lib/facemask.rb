@@ -108,7 +108,7 @@ module Facemask
 
     def sign(arguments)
       arguments_string = ''
-      arguments.sort {|a,b| a[0].to_s <=> b[0].to_s}.each {|kv| arguments_string << kv[0].to_s << "=" << kv[1]}
+      arguments.sort {|a,b| a[0].to_s <=> b[0].to_s}.each {|kv| arguments_string << kv[0].to_s << "=" << kv[1].to_s unless kv[1].instance_of?(File)}
       Digest::MD5.hexdigest arguments_string + @secret_key
     end
     
